@@ -220,9 +220,9 @@ function getPeriodicMovement(startTime) {
 
     // Interpolate between the initial and target transformations based on the phase
     
-    const initialMatrix = getModelViewMatrix();
-    let targetMatrix = createTranslationMatrix(0, 0, 0);
-
+     
+    let targetMatrix = getModelViewMatrix();
+    const initialMatrix = createIdentityMatrix();
     // Linear interpolation
     const interpolatedMatrix = new Float32Array(16);
     
