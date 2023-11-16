@@ -180,23 +180,23 @@ function getModelViewMatrix() {
 
 
     // (ST)
-    transformationMatrix.set(multiplyMatrices(transformationMatrix,translationMatrix),0);
+    transformationMatrix.set(multiplyMatrices(translationMatrix,transformationMatrix),0);
     
-    transformationMatrix.set(multiplyMatrices(transformationMatrix,scalingMatrix),0);
+    transformationMatrix.set(multiplyMatrices(scalingMatrix,transformationMatrix),0);
 
     // R_x(ST)
-    transformationMatrix.set(multiplyMatrices(transformationMatrix,rotationXMatrix),0);
+    transformationMatrix.set(multiplyMatrices(rotationXMatrix,transformationMatrix),0);
  
     // R_y(R_xST)
-    transformationMatrix.set(multiplyMatrices(transformationMatrix,rotationYMatrix),0);
+    transformationMatrix.set(multiplyMatrices(rotationYMatrix,transformationMatrix),0);
 
     // R_z(R_yR_xST)
-    transformationMatrix.set(multiplyMatrices(transformationMatrix,rotationZMatrix),0);
+    transformationMatrix.set(multiplyMatrices(rotationZMatrix,transformationMatrix),0);
 
     console.log(transformationMatrix);
 
 
-    return getTransposeMatrix(transformationMatrix);
+    return transformationMatrix;
 
 }
 
@@ -237,5 +237,5 @@ function getPeriodicMovement(startTime) {
         }
     }
 
-    return getTransposeMatrix(interpolatedMatrix);
+    return interpolatedMatrix;
 }
