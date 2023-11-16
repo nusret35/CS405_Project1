@@ -179,19 +179,18 @@ function getModelViewMatrix() {
     const rotationZMatrix = createRotationMatrix_Z(toRadians(60));
 
 
-    // (ST)
-    transformationMatrix.set(multiplyMatrices(translationMatrix,transformationMatrix),0);
-    
-    transformationMatrix.set(multiplyMatrices(scalingMatrix,transformationMatrix),0);
-
-    // R_x(ST)
     transformationMatrix.set(multiplyMatrices(rotationXMatrix,transformationMatrix),0);
- 
-    // R_y(R_xST)
+
     transformationMatrix.set(multiplyMatrices(rotationYMatrix,transformationMatrix),0);
 
-    // R_z(R_yR_xST)
     transformationMatrix.set(multiplyMatrices(rotationZMatrix,transformationMatrix),0);
+
+    // S(R_zR_yR_x)
+    transformationMatrix.set(multiplyMatrices(scalingMatrix,transformationMatrix),0);
+
+    //TS(R_zR_yR_x)
+    transformationMatrix.set(multiplyMatrices(translationMatrix,transformationMatrix),0);
+    
 
     console.log(transformationMatrix);
 
